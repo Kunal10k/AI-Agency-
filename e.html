@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>GSAP Water Hover Effect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { margin: 0; display: grid; place-items: center; min-height: 100vh; background:#0c1116;}
+    .frame {
+      width: min(90vw, 900px);
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.5);
+    }
+    .frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: url(#water);
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <img src="https://picsum.photos/id/1015/1600/1000" alt="demo" />
+  </div>
+
+  <!-- SVG filter -->
+  <svg width="0" height="0">
+    <filter id="water">
+      <feTurbulence id="turb" type="fractalNoise"
+        baseFrequency="0.018 0.03" numOctaves="2" seed="2"/>
+      <feGaussianBlur stdDeviation="0.4" result="NOISE_BLUR"/>
+      <feDisplacementMap id="disp" in="SourceGraphic" in2="NOISE_BLUR"
+        scale="0" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </svg>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script>
+    const turb = document.getElementById('turb');
+    const disp = document.getElementById('disp');
+    let anim;
+
+    const frame = document.querySelector('.frame');
+
+    frame.addEventListener('mouseenter', () => {
+      // displacement scale up
+      gsap.to(disp, { attr: { scale: 20 }, duration: 0.8, ease: "sine.out" });
+
+      // start turbulence animation
+      anim = gsap.to(turb, {
+        attr: { baseFrequency: "0.012 0.026" },
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+    });
+
+    frame.addEventListener('mouseleave', () => {
+      // stop turbulence animation
+      if (anim) anim.kill();
+
+      // reset turbulence + scale back
+      gsap.to(disp, { attr: { scale: 0 }, duration: 1, ease: "sine.inOut" });
+      gsap.to(turb, { attr: { baseFrequency: "0.018 0.03" }, duration: 1 });
+    });
+  </script>
+</body>
+</html>
