@@ -55,14 +55,35 @@
 
     /* header  */
     /* Transparent sticky header */
+    .navbar {
+        position: relative;
+    }
+
+    .header_overlay {
+        position: absolute;
+        left: 50%;
+        right: 50%;
+        top: 0;
+        transform: translate(-50%, -50%);
+        top: 0;
+        bottom: 0;
+        width: 40%;
+        height: 130px;
+        background: var(--main-bg);
+        border-radius: 30px;
+        box-shadow: 0px 0px 25px rgba(255, 0, 122, 0.3)
+            /* border: 1px solid #ffffff33; */
+
+    }
+
     .custom-header {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         z-index: 1030;
-        background: rgba(0, 0, 0, 0.4);
-        backdrop-filter: blur(10px);
+        /* background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(10px); */
         padding: 10px 0;
     }
 
@@ -187,6 +208,7 @@
         margin-bottom: 20px;
         opacity: 0;
     }
+
     /* Dots */
     .slider-container .dots {
         position: absolute;
@@ -206,7 +228,7 @@
         cursor: pointer;
     }
 
-   .slider-container  .dot.active {
+    .slider-container .dot.active {
         background: #ff007f;
     }
 
