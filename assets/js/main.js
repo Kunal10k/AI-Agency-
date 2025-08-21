@@ -174,28 +174,75 @@ counters.forEach(counter => observer.observe(counter));
 // *************** animated text started ****************
 
 // SplitType on all elements with .animate-text class
-// Split all animate elements
-let typeSplit = new SplitType('[animate]', {
-    types: 'lines, words, chars',
-    tagName: 'span'
-})
+document.querySelectorAll(".animate").forEach((el) => {
+    // data-animate থেকে নাম বের করা
+    let animType = el.dataset.animate;
 
-// Animate each animate element separately
-gsap.utils.toArray('[animate]').forEach(el => {
-    gsap.from(el.querySelectorAll('.word'), {
-        opacity: 0.2,
-        y: 30,
-        duration: 0.3, // ছোট মান = দ্রুত speed
-        ease: 'power4.out',
-        stagger: 0.05,
-        scrollTrigger: {
-            trigger: el,
-            start: 'top 80%',
-            toggleActions: 'play none none none'
-            // scrub:true দিলে স্ক্রল এর সাথে সাথে animate হবে
-        }
-    })
-})
+    // SplitType apply
+    let typeSplit = new SplitType(el, {
+        types: "lines, words, chars",
+        tagName: "span",
+    });
+
+    let lines = el.querySelectorAll(".line");
+
+    // আলাদা আলাদা animation
+    switch (animType) {
+        case "fade":
+            gsap.from(lines, {
+                opacity: 0,
+                y: 30,
+                duration: 0.6,
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top center",
+                    scrub: true,
+                },
+            });
+            break;
+
+        case "scale":
+            gsap.from(lines, {
+                opacity: 0,
+                scale: 0.5,
+                duration: 0.6,
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top center",
+                    scrub: true,
+                },
+            });
+            break;
+
+        case "rotate":
+            gsap.from(lines, {
+                opacity: 0,
+                rotation: 45,
+                duration: 0.6,
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top center",
+                    scrub: true,
+                },
+            });
+            break;
+
+        default:
+            gsap.from(lines, {
+                opacity: 0.3,
+                duration: 0.5,
+                stagger: 0.15,
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top center",
+                    scrub: true,
+                },
+            });
+    }
+});
 
 //   ********* animated text ended *********
 
@@ -255,9 +302,3 @@ frame.addEventListener('mouseleave', () => {
         duration: 1
     });
 });
-
-
-
-
-
-
