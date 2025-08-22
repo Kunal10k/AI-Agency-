@@ -18,11 +18,11 @@
     }
 
     p {
-        color: var(--nw);
+        color: var(--send-bg);
     }
 
     ul li {
-        color: var(--nw);
+        color: var(--send-bg);
     }
 
     .global_padding {
@@ -31,13 +31,13 @@
 
     /* CSS Variables */
     :root {
-        --main-bg: #060129;
+        --main-bg: #ffffff;
         --text-light: #ffffff;
-        --accent: #ff007f;
+        --accent: #0C5ADB;
         --font-heading: 'Poppins', sans-serif;
         --font-body: 'Roboto', sans-serif;
         --send-bg: #18133B;
-        --nw: #9692b2;
+        --nw: #000000;
     }
 
     /* Body */
@@ -46,9 +46,10 @@
         background-color: var(--main-bg);
         color: var(--text-light);
         overflow-x: hidden;
-        color: #fff;
+        color: #000000;
         background-color: var(--main-bg);
         scroll-behavior: smooth;
+        /* browser support er jonno */
     }
 
     /* Headings */
@@ -92,17 +93,17 @@
         border-bottom: 1px solid #ffffff4b;
     }
 
-    .header-top {
+    /* .header-top {
         position: relative;
         height: 50px;
         background-color: var(--accent);
         line-height: 50px;
         border-radius: 0 0 15px 15px;
         overflow: hidden;
-        /* keep bubbles inside */
+        
     }
 
-    /* Bubble style */
+    
     .header-top .bubble {
         position: absolute;
         bottom: -50px;
@@ -110,8 +111,8 @@
         border-radius: 50%;
         animation: rise 8s infinite ease-in;
         pointer-events: none;
-        /* prevent blocking clicks */
-    }
+      
+    } */
 
     /* Animation */
     @keyframes rise {
@@ -133,7 +134,7 @@
 
     .custom-header {
         position: absolute;
-        top: 42px;
+        top: 0;
         left: 0;
         right: 0;
         z-index: 1030;
@@ -144,10 +145,11 @@
     .custom-header .nav-link {
         position: relative;
         text-transform: uppercase;
-        font-size: 14px;
+        font-size: 15px;
         text-decoration: none;
-        color: #000;
+        color: var(--send-bg);
         padding-bottom: 5px;
+        font-weight: 500;
     }
 
     .custom-header .nav-link::after {
@@ -176,7 +178,7 @@
     }
 
     .navbar-nav .nav-link {
-        color: #9692b2;
+        color: var(--send-bg);
     }
 
     /* header */
@@ -249,14 +251,14 @@
 
     .tagline {
         display: inline-block;
-        background: #ff007f;
+        background: var(--accent);
         color: white;
         font-size: 14px;
-        padding: 6px 16px;
+        padding: 3px 16px;
         border-radius: 25px;
-        font-weight: bold;
+        font-weight: lighter;
         margin-bottom: 15px;
-        opacity: 0;
+        opacity: 1;
     }
 
     .slider-container h1 {
@@ -295,14 +297,15 @@
     /* trusted cline  */
 
     .client {
-        padding: 120px 0;
+        padding: 44px 0;
     }
 
     .headline {
         font-size: 25px;
-        font-weight: 500;
+        font-weight: 600;
         margin-bottom: 3.5rem;
         text-align: center;
+        color: var(--send-bg);
     }
 
     .headline span {
@@ -329,8 +332,8 @@
     .marquee-content img {
         margin: 0 40px;
         /* filter: brightness(0) invert(1); */
-        opacity: 0.6;
-        height: 30px;
+        opacity: 1;
+        height: 50px;
 
         flex-shrink: 0;
 
@@ -348,6 +351,17 @@
 
 
     /* how its works  */
+    .about-title span {
+        font-size: 13px;
+        letter-spacing: 2px;
+        padding: 4px 10px;
+        background: #0044751a;
+        color: var(--accent);
+        border-radius: 4px;
+        font-weight: 600;
+        margin-bottom: 0.5rem !important;
+        display: inline-block;
+    }
 
     .section-title {
         text-align: center;
@@ -358,9 +372,10 @@
         font-size: 13px;
         letter-spacing: 2px;
         padding: 4px 10px;
-        background: #ff006a1a;
+        background: #0044751a;
+        color: var(--accent);
+
         border-radius: 4px;
-        color: #ff0077;
         font-weight: 600;
     }
 
@@ -377,25 +392,31 @@
 
     .color_changes .step-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0px 0px 25px rgba(255, 0, 122, 0.3);
+        box-shadow: 0px 0px 25px rgba(9, 214, 255, 0.3);
     }
 
     .color_changes .step-card .icon {
-        font-size: 40px;
+        font-size: 26px;
         margin-bottom: 20px;
-        color: #ff0077;
-        width: 60px;
-        background: var(--send-bg);
+        color: var(--main-bg);
+        width: 45px;
+        background: var(--accent);
         border-radius: 10px;
-        height: 60px;
+        height: 44px;
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
+
+
+
+
+
     .step-card h4 {
-        font-weight: 700;
+        font-weight: 600;
         margin-bottom: 15px;
+        color: var(--send-bg);
     }
 
     .step-card p {
@@ -430,7 +451,8 @@
     }
 
     .color_changes {
-        background-color: var(--send-bg);
+        background: url(../img/about-bg.jpg) center no-repeat;
+        background-position: center;
         margin: 25px;
         padding: 60px 0;
         border-radius: 10px;
@@ -462,7 +484,7 @@
     .highlight-number {
         font-size: 100px;
         font-weight: 700;
-        color: #ff0077;
+        color: var(--accent);
         line-height: 1;
     }
 
@@ -478,13 +500,13 @@
 
     .feature-list li::before {
         content: "✔";
-        color: #ff0077;
+        color: var(--accent);
         margin-right: 8px;
         font-weight: bold;
     }
 
     .read-btn {
-        background: #ff0077;
+        background: var(--send-bg);
         border: none;
         color: #fff;
         font-weight: 600;
@@ -498,16 +520,19 @@
     }
 
     .read-btn:hover {
-        background: #ff3399;
+        background: var(--send-bg);
         transform: translateY(-3px);
     }
 
+    .tj-service-section {
+        background: url(../img/about-bg.jpg) center no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
     .about-image img {
-        border-radius: 18px;
-        max-width: 100%;
-        height: auto;
-        box-shadow: 0 0 25px rgba(255, 0, 122, 0.5);
-        clip-path: polygon(50% 0%, 100% 0, 100% 81%, 85% 100%, 0 100%, 0% 60%, 0 0);
+        width: 100%;
+        height: 100%;
     }
 
     .side-btn {
@@ -554,8 +579,9 @@
     }
 
     .counter-title span {
-        background: #ff00771a;
-        color: #ff0077;
+        background: #0044751a;
+        color: var(--accent);
+
         font-size: 13px;
         letter-spacing: 2px;
         padding: 4px 12px;
@@ -568,49 +594,94 @@
 
 
     .counter-box {
-        background: #1b1141;
         padding: 40px 25px;
         border-radius: 16px;
         position: relative;
         transition: all 0.3s ease;
         height: 100%;
         text-align: left;
+        overflow: hidden;
+        /* important to keep effect inside */
+        background: #fff;
+        /* base background */
     }
+
+    /* Pseudo element for hover background */
+    .counter-box::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background: rgb(240, 248, 254);
+        /* your highlight color */
+        transform: scaleY(0);
+        transform-origin: bottom;
+        /* start from bottom */
+        transition: transform 0.4s ease;
+        z-index: 0;
+    }
+
+    /* Animate on hover */
+    .counter-box:hover::before {
+        transform: scaleY(1);
+    }
+
+    /* Keep text/content above overlay */
+    .counter-box * {
+        position: relative;
+        z-index: 1;
+    }
+
+    .col-lg-4:nth-child(2) .counter-box {
+        border: 1px solid #0C5ADB;
+    }
+
+    .col-lg-4:nth-child(2) .step-card {
+        border: 1px solid #0C5ADB;
+
+    }
+
 
     .counter-box:hover {
         transform: translateY(-8px);
-        box-shadow: 0 0 20px rgba(255, 0, 122, 0.3);
+        box-shadow: 0 0 20px rgba(30, 199, 255, 0.3);
     }
 
     .counter-icon {
         position: absolute;
-        top: -1px;
-        right: -1px;
+        top: 1px;
+        left: 0px;
         font-size: 28px;
-        color: #ff0077;
-        width: 60px;
-        height: 60px;
-        background: var(--main-bg);
+        color: var(--send-bg);
+        width: 48px;
+        height: 45px;
+        background: #9ec9ff33;
         border-radius: 10px;
         display: flex;
         justify-content: center;
         align-items: center;
+        /* border: 1px solid #2727271d; */
+        border-radius: 32%;
     }
 
     .counter-number {
         font-size: 48px;
         font-weight: 700;
         margin-bottom: 10px;
-        color: #fff;
+        color: var(--send-bg) !important;
     }
 
     .counter-text {
         font-weight: 600;
         margin-bottom: 15px;
+        color: var(--send-bg) !important;
     }
 
     .counter-box p {
-        color: var(--nw);
+        color: var(--send-bg) !important;
+
         font-size: 14px;
     }
 
@@ -652,6 +723,19 @@
         opacity: 1;
         transform: translate(0, 0);
         pointer-events: auto;
+    }
+
+    .sub-title {
+        background: #0044751a;
+        color: var(--accent);
+        font-size: 13px;
+        letter-spacing: 2px;
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-weight: 600;
+        display: inline-block;
+        margin-bottom: 15px;
+
     }
 
     /* Subtle hover */
@@ -755,7 +839,7 @@
         font-size: 16px;
         line-height: 1.6;
         margin-bottom: 20px;
-        color: var(--nw);
+        color: var(--send-bg);
     }
 
     .tj-primary-btn {
@@ -788,7 +872,7 @@
         border-radius: 12px;
         overflow: hidden;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        padding: 25px;
+        padding: 0;
         position: relative;
     }
 
@@ -806,9 +890,9 @@
         position: absolute;
         right: 0;
         bottom: 0;
-        background: var(--send-bg);
-        width: 60px;
-        height: 60px;
+        background: var(--accent);
+        width: 40px;
+        height: 40px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -817,7 +901,7 @@
     }
 
     .service-link:hover {
-        box-shadow: 0 0 20px rgba(255, 0, 122, 0.3);
+        box-shadow: 0 0 20px rgba(82, 160, 255, 0.3);
     }
 
 
@@ -833,7 +917,9 @@
         height: 196px;
         object-fit: cover;
         display: block;
+        border-radius: 10px;
     }
+
     .footer-cta p {
         color: #ffff;
     }
@@ -862,7 +948,7 @@
 
     .service-content .desc {
         font-size: 14px;
-        color: #cfcfcf;
+        color: var(--send-bg);
         margin-bottom: 10px;
     }
 
@@ -904,7 +990,7 @@
 
     /* CTA Section */
     .footer-cta {
-        background: linear-gradient(90deg, #2a00b7, #ff007f);
+        background: var(--accent);
         padding: 40px;
         border-radius: 16px;
         max-width: 1100px;
@@ -916,7 +1002,7 @@
         align-items: center;
         justify-content: space-between;
         flex-wrap: wrap;
-        width: 70%;
+        width: 90%;
         overflow: hidden;
         /* hides overflowing bubbles */
     }
@@ -1040,13 +1126,14 @@
 
     /* Footer */
     footer {
-        background: #1a1335;
+        background: url(../img/hero-bg.jpg) center no-repeat;
         padding: 100px 40px 40px;
         position: relative;
         border-radius: 20px;
         margin: 25px;
-        background: var(--send-bg);
-        border-bottom: 6px solid #ff007f;
+        background-size: cover;
+        /* border-bottom: 1px solid var(--send-bg); */
+
     }
 
     .footer-container {
@@ -1058,7 +1145,7 @@
     }
 
     .footer-logo p {
-        color: #bbb;
+        color: var(--send-bg);
         margin: 10px 0;
         font-size: 14px;
         line-height: 1.6;
@@ -1068,20 +1155,36 @@
         display: inline-block;
         margin-right: 12px;
         font-size: 18px;
-        color: #fff;
-        background: #00000040;
-        padding: 8px;
+        color: var(--accent);
+
         border-radius: 50%;
         transition: 0.3s;
     }
 
     .footer-social a:hover {
-        background: #ff007f;
+        color: var(--send-bg);
+    }
+
+    .footer-bottom p {
+        font-size: 1.2rem;
     }
 
     .footer-links h4 {
         font-size: 16px;
         margin-bottom: 12px;
+        font-weight: 600;
+        border-bottom: 1px solid #00000050;
+        display: inline-block;
+        color: var(--accent);
+    }
+
+    .footer-address h4 {
+        font-size: 16px;
+        margin-bottom: 12px;
+        font-weight: 600;
+        border-bottom: 1px solid #00000050;
+        display: inline-block;
+        color: var(--accent);
     }
 
     .footer-links ul {
@@ -1095,7 +1198,7 @@
     }
 
     .footer-links ul li a {
-        color: #bbb;
+        color: var(--send-bg);
         font-size: 14px;
         text-decoration: none;
         transition: 0.3s;
@@ -1172,16 +1275,22 @@
     }
 
     .title-text {
-        color: #f72585;
+        background: #0044751a;
+        color: var(--accent);
+        font-size: 13px;
         letter-spacing: 2px;
-        text-transform: uppercase;
-        font-size: 0.9rem;
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-weight: 600;
+        display: inline-block;
+        margin-bottom: 15px;
     }
 
     .main-heading {
         font-size: 2rem;
         font-weight: 700;
         margin-bottom: 2rem;
+        color: var(--send-bg);
     }
 
     .works .step-card {
@@ -1198,17 +1307,39 @@
 
     }
 
-    .works .step-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 0 20px rgba(255, 0, 120, 0.4);
+    .step-card {
+        position: relative;
+        overflow: hidden;
     }
+
+    .step-card::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 0;
+        background: rgb(240, 248, 254);
+        /* hover effect color */
+        transition: height 0.4s ease;
+        z-index: -1;
+        /* content upore thakar jonno */
+    }
+
+    .step-card:hover::after {
+        height: 100%;
+        /* bottom to top fill */
+    }
+
+
+
 
     .step-number {
         writing-mode: vertical-rl;
         transform: rotate(180deg);
         font-size: 0.8rem;
         font-weight: 600;
-        color: #f72585;
+        color: var(--send-bg);
         margin-left: 1rem;
         background: var(--main-bg);
         padding: 12px;
@@ -1226,11 +1357,7 @@
         color: #bbb;
     }
 
-    .astro-img {
-        border-radius: 15px;
-        box-shadow: 0 0 25px rgba(255, 0, 120, 0.6);
-        clip-path: polygon(0 0, 100% 0, 100% 50%, 100% 100%, 20% 100%, 0 76%);
-    }
+
 
     /* ***************** work part ended  ************************ */
 
@@ -1289,40 +1416,57 @@
     }
 
     .works .accordion-item:hover {
-        box-shadow: 0px 0px 25px rgba(255, 0, 122, 0.3)
+        box-shadow: 0px 0px 25px rgba(23, 182, 255, 0.3)
     }
 
     .works .accordion-button {
-        background-color: var(--send-bg);
+        background-color: rgb(231, 242, 251);
         border: none;
-        color: #fff;
+        color: var(--send-bg) !important;
         font-weight: 600;
 
     }
 
     .works .accordion-body {
-        color: var(--nw);
+        background-color: rgb(231, 242, 251);
+        color: var(--send-bg);
     }
 
     .content p {
-        color: #fff;
+        color: var(--send-bg);
     }
 
     .acco li {
         font-size: 14px;
+        color: var(--send-bg);
+
     }
 
 
 
     /* ******************************* top bar ****************************** */
 
-    .header-top {
+    /* .header-top {
         height: 50px;
         background-color: var(--accent);
         line-height: 50px;
         border-radius: 0 0 15px 15px;
+    } */
+
+    /* .head {
+        height: 16px;
+    } */
+
+
+
+    .banner {
+        background: url(../img/hero-bg.jpg) center no-repeat;
+        background-size: cover;
+        padding: 150px 0 100px 0;
     }
 
-    .head {
-        height: 16px;
+    .banner_content h1 {
+        font-size: 45px;
+        font-weight: 600;
+        color: var(--send-bg);
     }

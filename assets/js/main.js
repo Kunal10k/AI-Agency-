@@ -1,103 +1,102 @@
-const slider = document.querySelector(".slider");
-const slides = document.querySelectorAll(".slide");
-const dots = document.querySelectorAll(".dot");
-let index = 0;
+// const slider = document.querySelector(".slider");
+// const slides = document.querySelectorAll(".slide");
+// const dots = document.querySelectorAll(".dot");
+// let index = 0;
 
-function animateContent(content) {
-    const tl = gsap.timeline();
+// function animateContent(content) {
+//     const tl = gsap.timeline();
 
-    // Zoom effect + fade in (দ্রুত)
-    tl.fromTo(content, {
-            scale: 0.95,
-            opacity: 0
-        }, {
-            scale: 1,
-            opacity: 1,
-            duration: 0.6, // fast zoom
-            ease: "power2.out"
-        })
-        .fromTo(content.querySelector(".tagline"), {
-            y: -20,
-            opacity: 0
-        }, {
-            y: 0,
-            opacity: 1,
-            duration: 0.4,
-            ease: "power2.out"
-        })
-        .fromTo(content.querySelector("h1"), {
-            y: 50,
-            opacity: 0
-        }, {
-            y: 0,
-            opacity: 1,
-            duration: 0.5,
-            ease: "power3.out"
-        }, "-=0.2")
-        .fromTo(content.querySelector("p"), {
-            y: 30,
-            opacity: 0
-        }, {
-            y: 0,
-            opacity: 1,
-            duration: 0.4,
-            ease: "power2.out"
-        }, "-=0.3")
-        .fromTo(content.querySelector(".btn"), {
-            y: 20,
-            opacity: 0
-        }, {
-            y: 0,
-            opacity: 1,
-            duration: 0.3,
-            ease: "power2.out"
-        }, "-=0.2");
-}
 
-function showSlide(i) {
-    slider.style.transform = `translateX(-${i * 100}%)`;
-    dots.forEach(dot => dot.classList.remove("active"));
-    dots[i].classList.add("active");
+//     tl.fromTo(content, {
+//             scale: 0.95,
+//             opacity: 0
+//         }, {
+//             scale: 1,
+//             opacity: 1,
+//             duration: 0.6,
+//             ease: "power2.out"
+//         })
+//         .fromTo(content.querySelector(".tagline"), {
+//             y: -20,
+//             opacity: 0
+//         }, {
+//             y: 0,
+//             opacity: 1,
+//             duration: 0.4,
+//             ease: "power2.out"
+//         })
+//         .fromTo(content.querySelector("h1"), {
+//             y: 50,
+//             opacity: 0
+//         }, {
+//             y: 0,
+//             opacity: 1,
+//             duration: 0.5,
+//             ease: "power3.out"
+//         }, "-=0.2")
+//         .fromTo(content.querySelector("p"), {
+//             y: 30,
+//             opacity: 0
+//         }, {
+//             y: 0,
+//             opacity: 1,
+//             duration: 0.4,
+//             ease: "power2.out"
+//         }, "-=0.3")
+//         .fromTo(content.querySelector(".btn"), {
+//             y: 20,
+//             opacity: 0
+//         }, {
+//             y: 0,
+//             opacity: 1,
+//             duration: 0.3,
+//             ease: "power2.out"
+//         }, "-=0.2");
+// }
 
-    const currentContent = slides[i].querySelector(".content");
-    animateContent(currentContent);
-}
+// function showSlide(i) {
+//     slider.style.transform = `translateX(-${i * 100}%)`;
+//     dots.forEach(dot => dot.classList.remove("active"));
+//     dots[i].classList.add("active");
 
-function autoSlide() {
-    index = (index + 1) % slides.length;
-    showSlide(index);
-}
+//     const currentContent = slides[i].querySelector(".content");
+//     animateContent(currentContent);
+// }
 
-let slideInterval = setInterval(autoSlide, 5000);
+// function autoSlide() {
+//     index = (index + 1) % slides.length;
+//     showSlide(index);
+// }
 
-dots.forEach((dot, i) => {
-    dot.addEventListener("click", () => {
-        index = i;
-        showSlide(index);
-        clearInterval(slideInterval);
-        slideInterval = setInterval(autoSlide, 5000);
-    });
-});
+// let slideInterval = setInterval(autoSlide, 5000);
 
-showSlide(index);
+// dots.forEach((dot, i) => {
+//     dot.addEventListener("click", () => {
+//         index = i;
+//         showSlide(index);
+//         clearInterval(slideInterval);
+//         slideInterval = setInterval(autoSlide, 5000);
+//     });
+// });
+
+// showSlide(index);
 
 // ***************************************************************************
+// COUNTER JS (fixed)
 
-// counter js 
-
-// Smooth counter animation
+// Counter JS
 function animateCounter(counter) {
     const target = +counter.getAttribute("data-target");
     const suffix = counter.getAttribute("data-suffix") || "";
-    const duration = 3000; // 3 seconds (slow)
+    const duration = 3000; // 3 seconds
     const startTime = performance.now();
 
     function updateCounter(currentTime) {
         const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1); // 0 → 1
+        const progress = Math.min(elapsed / duration, 1);
         const value = Math.floor(progress * target);
 
-        counter.innerText = value.toLocaleString() + suffix;
+        counter.textContent = value.toLocaleString() + suffix;
 
         if (progress < 1) {
             requestAnimationFrame(updateCounter);
@@ -107,8 +106,9 @@ function animateCounter(counter) {
     requestAnimationFrame(updateCounter);
 }
 
-// Trigger on scroll
+// Observe counters
 const counters = document.querySelectorAll(".counter-number");
+
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting && !entry.target.classList.contains("counted")) {
@@ -116,16 +116,12 @@ const observer = new IntersectionObserver(entries => {
             animateCounter(entry.target);
         }
     });
-}, {
-    threshold: 0.5
-});
+}, { threshold: 0 }); // 👈 triggers as soon as visible
 
 counters.forEach(counter => observer.observe(counter));
 
-//counter js 
 
 // ***************************************************************************
-
 
 
 // ***********back to top started **************
@@ -133,12 +129,11 @@ counters.forEach(counter => observer.observe(counter));
     const btn = document.getElementById('backToTop');
     const icon = btn.querySelector('i');
 
-    // Show/hide on scroll (with a tiny throttle)
     let ticking = false;
     window.addEventListener('scroll', () => {
         if (!ticking) {
             window.requestAnimationFrame(() => {
-                const showAt = 300; // px scrolled before showing
+                const showAt = 300;
                 if (window.scrollY > showAt) {
                     btn.classList.add('show');
                 } else {
@@ -148,37 +143,27 @@ counters.forEach(counter => observer.observe(counter));
             });
             ticking = true;
         }
-    }, {
-        passive: true
-    });
+    }, { passive: true });
 
-    // Smooth scroll to top + blastoff animation
     btn.addEventListener('click', (e) => {
         e.preventDefault();
-        icon.classList.remove('blastoff'); // restart if needed
-        // Force reflow so animation can retrigger
+        icon.classList.remove('blastoff');
         void icon.offsetWidth;
         icon.classList.add('blastoff');
 
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
 
-        // Clean up the icon state after the animation
         setTimeout(() => icon.classList.remove('blastoff'), 900);
     });
 })();
 //   ************** back to top ended **************
 
+
 // *************** animated text started ****************
 
-// SplitType on all elements with .animate-text class
 document.querySelectorAll(".animate").forEach((el) => {
-    // data-animate থেকে নাম বের করা
     let animType = el.dataset.animate;
 
-    // SplitType apply
     let typeSplit = new SplitType(el, {
         types: "lines, words, chars",
         tagName: "span",
@@ -186,7 +171,6 @@ document.querySelectorAll(".animate").forEach((el) => {
 
     let lines = el.querySelectorAll(".line");
 
-    // আলাদা আলাদা animation
     switch (animType) {
         case "fade":
             gsap.from(lines, {
@@ -247,58 +231,4 @@ document.querySelectorAll(".animate").forEach((el) => {
 //   ********* animated text ended *********
 
 
-
-
-
-
-
-
 // ********************* water effect  started ************
-
-const turb = document.getElementById('turb');
-const disp = document.getElementById('disp');
-let anim;
-
-const frame = document.querySelector('.frame');
-
-frame.addEventListener('mouseenter', () => {
-    // displacement scale up
-    gsap.to(disp, {
-        attr: {
-            scale: 20
-        },
-        duration: 0.8,
-        ease: "sine.out"
-    });
-
-    // start turbulence animation
-    anim = gsap.to(turb, {
-        attr: {
-            baseFrequency: "0.012 0.026"
-        },
-        duration: 3,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-    });
-});
-
-frame.addEventListener('mouseleave', () => {
-    // stop turbulence animation
-    if (anim) anim.kill();
-
-    // reset turbulence + scale back
-    gsap.to(disp, {
-        attr: {
-            scale: 0
-        },
-        duration: 1,
-        ease: "sine.inOut"
-    });
-    gsap.to(turb, {
-        attr: {
-            baseFrequency: "0.018 0.03"
-        },
-        duration: 1
-    });
-});
